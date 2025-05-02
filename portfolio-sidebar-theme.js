@@ -21,24 +21,14 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/portfolio-sidebar-theme.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    this.pages = [];
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
+      pages: { type: Array },
       title: { type: String },
     };
   }
@@ -55,30 +45,26 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
       }
-      h3 span {
-        font-size: var(--portfolio-sidebar-theme-label-font-size, var(--ddd-font-size-s));
-      }
+    
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
-  }
-
-  /**
-   * haxProperties integration via file reference
-   */
-  static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
-  }
+    <scroll-button><</scroll-button>
+    <div class="header">
+      <h1>My Portfolio</h1>
+    </div>
+    <portfolio-sidebar>
+        <ul>
+          ${this.pages.map(page => html`<li>${page}</li>`)}
+        </ul>
+    </portfolio-sidebar>
+    <div class = "wrapper">
+      <h1>Portfolio Sidebar Theme</h1>
+      <p>This is the portfolio sidebar theme content.</p>
 }
 
 globalThis.customElements.define(PortfolioSidebarTheme.tag, PortfolioSidebarTheme);
