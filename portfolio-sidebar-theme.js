@@ -20,8 +20,7 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.pages = [];
+    this.pages = ["About","Contact"];
   }
 
   // Lit reactive properties
@@ -29,7 +28,6 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       pages: { type: Array },
-      title: { type: String },
     };
   }
 
@@ -46,7 +44,17 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
       .wrapper {
         margin: var(--ddd-spacing-2);
       }
-    
+      .sidebar {
+        width: 200px;
+        height: 800px;
+        background-color: black;
+        color: black;
+        padding: var(--ddd-spacing-2);
+      }
+      .content{
+        flex:1;
+        padding:20px;
+      }
     `];
   }
 
@@ -54,17 +62,19 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
     <scroll-button><</scroll-button>
-    <div class="header">
-      <h1>My Portfolio</h1>
-    </div>
+    <div class="sidebar">
+      
     <portfolio-sidebar>
         <ul>
-          ${this.pages.map(page => html`<li>${page}</li>`)}
+        ${this.pages.map(page => html`<li><a href="#${page.toLowerCase()}">${page}</a></li>`)}
         </ul>
-    </portfolio-sidebar>
-    <div class = "wrapper">
-      <h1>Portfolio Sidebar Theme</h1>
-      <p>This is the portfolio sidebar theme content.</p>
+    
+      </portfolio-sidebar>
+    </div>
+    <div class = "content"></div>
+      
+    `;
+  }
 }
 
 globalThis.customElements.define(PortfolioSidebarTheme.tag, PortfolioSidebarTheme);

@@ -32,6 +32,7 @@ export class PortfolioPage extends DDDSuper(LitElement) {
     return css`
       :host {
         display: block;
+        height:100vh;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
@@ -44,7 +45,7 @@ export class PortfolioPage extends DDDSuper(LitElement) {
   render(){
     return html`
       <div class="wrapper">
-        <h1>Portfolio Page</h1>
+        <h1>${this.title}</h1>
         <p>This is the portfolio page content.</p>
       </div>`;
   }
