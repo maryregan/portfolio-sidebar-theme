@@ -20,23 +20,29 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.pages = ["About","Contact"];
+    this.title = "Portfolio";
+    this.pagenumber = 0;
+    this.pages = ["Home", "About", "Projects", "Contact", "Resume"];
   }
 
-  // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
       pages: { type: Array },
+      title: { type: String },
+      pagenumber: { type: Number },
     };
   }
 
-  // Lit scoped styles
   static get styles() {
     return [super.styles,
     css`
       :host {
         display: flex;
+        height: 100vh;
+        color: var(--ddd-theme-primary);
+        background-color: var(--ddd-theme-accent);
+        font-family: var(--ddd-font-navigation);
       }
       .sidebar {
         width: 200px;
@@ -45,27 +51,59 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
         color: white;
         padding: 20px;
         position: fixed;
+        top: 0;
+        left: 0;
       }
-      .content{
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sidebar li {
+        margin: 10px 0;
+      }
+      .sidebar a {
+        color: white;
+        text-decoration: none;
+      }
+      .sidebar a:hover {
+        text-decoration: underline;
+      }
+      .content {
         margin-left: 220px;
-        padding:20px;
+        padding: 20px;
         width: calc(100% - 220px);
+        overflow-y: auto;
+        height: 100vh;
       }
-      
+      .wrapper {
+        margin: var(--ddd-spacing-2);
+      }
+      .pages {
+        margin: 5px 0;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+      }
+      .pages:hover {
+        background-color: #0056b3;
+      }
     `];
   }
 
-  // Lit render the HTML
   render() {
     return html`
-    <div class="sidebar">
-        <ul>
-        ${this.pages.map(page => html`<li><a href="#${page.toLowerCase()}">${page}</a></li>`)}
-        </ul>
-    </div>
-    <div class = "content">
-    <slot></slot>
-    </div>
+      <div class="sidebar">
+        <div class="wrapper">
+          ${this.pages.map(page => html`<div class="pages">${page}</div>`)}
+        </div>
+      </div>
+      <div class="content">
+        <h1>${this.title}</h1>
+        <p>This is the portfolio page content.</p>
+        <slot></slot>
+      </div>
     `;
   }
 }
