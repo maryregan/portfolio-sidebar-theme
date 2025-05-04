@@ -4,7 +4,6 @@
  */
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
  * `portfolio-sidebar-theme`
@@ -12,7 +11,7 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @demo index.html
  * @element portfolio-sidebar-theme
  */
-export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
+export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
 
   static get tag() {
     return "portfolio-sidebar-theme";
@@ -22,7 +21,13 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
     super();
     this.title = "Portfolio";
     this.pagenumber = 0;
-    this.pages = ["Home", "About", "Projects", "Contact", "Resume"];
+    this.pages = [
+      { title: "Home", number: 0 },
+      { title: "About", number: 1 },
+      { title: "Projects", number: 2 },
+      { title: "Contact", number: 3 },
+      { title: "Resume", number: 4 }
+    ];
   }
 
   static get properties() {
@@ -38,73 +43,51 @@ export class PortfolioSidebarTheme extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: flex;
+        display: block;
         height: 100vh;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
       .sidebar {
-        width: 200px;
-        height: 100vh;
+        display:block;
+        width: 310px;
         background-color: #007BFF;
-        color: white;
-        padding: 20px;
+        color: var(--portfolio-sidebar-color,white);
         position: fixed;
+        text-align: center;
         top: 0;
+        bottom: 0;
         left: 0;
       }
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-      }
-      .sidebar li {
-        margin: 10px 0;
-      }
-      .sidebar a {
-        color: white;
-        text-decoration: none;
-      }
-      .sidebar a:hover {
-        text-decoration: underline;
-      }
-      .content {
-        margin-left: 220px;
-        padding: 20px;
-        width: calc(100% - 220px);
-        overflow-y: auto;
-        height: 100vh;
-      }
       .wrapper {
-        margin: var(--ddd-spacing-2);
+        margin-left: 310px;
       }
-      .pages {
-        margin: 5px 0;
-        padding: 10px;
-        background-color: #007BFF;
-        color: white;
-        text-align: center;
-        cursor: pointer;
-      }
-      .pages:hover {
-        background-color: #0056b3;
+      ul{
+        list-style-type: none;
+        padding: 0;
       }
     `];
   }
 
   render() {
     return html`
-      <div class="sidebar">
-        <div class="wrapper">
-          ${this.pages.map(page => html`<div class="pages">${page}</div>`)}
-        </div>
-      </div>
-      <div class="content">
-        <h1>${this.title}</h1>
-        <p>This is the portfolio page content.</p>
-        <slot></slot>
+    <scroll-button></scroll-button>
+      
+    <div class=sidebar>
+      <ul>
+      ${this.pages.map((page, index) => html`<li><a href="#${page.number}" @click="${this.linkChange}" data-index="${index}">${page.title}</a></li>`)}
+      </ul>
+    </div>
+    <div class="wrapper">
+      <h1>${this.title}</h1>
+      <slot></slot>
       </div>
     `;
+  }
+
+  _navigateToPage(index) {
+    this.pagenumber = index;
   }
 }
 
