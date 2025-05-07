@@ -47,8 +47,9 @@ export class PortfolioPage extends DDDSuper(LitElement) {
                 padding: 20px;
             }
             .wrapper {
-                height: 100vw;
+                height: 100%;
                 width: 100vh;
+                display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
