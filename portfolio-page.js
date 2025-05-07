@@ -36,8 +36,7 @@ export class PortfolioPage extends DDDSuper(LitElement) {
             :host {
                 display: block;
                 height: 100vh;
-                scroll-snap-type: y mandatory;
-                overflow-y: scroll;
+                scroll-snap-type: start;
                 margin: 0;
                 padding: 0;
             }
@@ -47,9 +46,8 @@ export class PortfolioPage extends DDDSuper(LitElement) {
                 padding: 20px;
             }
             .wrapper {
-                height: 100vh;
-                scroll-snap-align: start;
-                display: flex;
+                height: 100%;
+                width: 100%;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;

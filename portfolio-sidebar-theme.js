@@ -62,10 +62,18 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
       .wrapper {
         margin-left: 310px;
         scroll-behavior:smooth;
+        height: 100vh;
       }
       ul{
         list-style-type: none;
         padding: 0;
+      }
+      li{
+        margin: 10px 0;
+        cursor: pointer;
+      }
+      li:hover{
+        text-decoration: underline;
       }
       .container{
         display:flex;
@@ -76,16 +84,21 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
   render() {
     return html`
     <div class="sidebar">
+      <h2>${this.title}</h2>
+      <ul> ${this.pages.map((page,index) => html` <li @click="${()=> 
+      this._navigateToPage(index)}">${page.title}</li>`)}
+      </ul>
     </div>
     <div class="wrapper">
       <slot></slot>
       </div>
     `;
   }
-
-  _navigateToPage(index) {
-    this.pagenumber = index;
-  }
+   _navigateToPage(index) {
+     const page = this.shadowRoot.querySelector(`portfolio-page:nth-child(${index + 1})`);
+     if (page) {page.scrollIntoView({ behavior: 'smooth' });}
+    }
+    
 }
 
 globalThis.customElements.define(PortfolioSidebarTheme.tag, PortfolioSidebarTheme);

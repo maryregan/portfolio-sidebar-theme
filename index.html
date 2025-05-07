@@ -10,22 +10,77 @@
 </head>
 <script type="module" src="./portfolio-sidebar-theme.js"></script>
 <script type="module" src="./portfolio-page.js"></script>
-</head>
 
 <body>
     <portfolio-sidebar-theme>
-        <portfolio-page id="screen-1" title="About Me">
-        About
+      <fixed-element> </fixed-element>
+        <portfolio-page id="screen-1" title="Home">
+        <h1>Welcome to my portfolio</h1>
+        <p>Hi!, My name is Mary Regan. Welcome to my professional portfolio!</p>
         </portfolio-page>
-        <portfolio-page id="screen-2"title="Page 2">
+        <portfolio-page id="screen-2" title="About Me">
+        <h1>About Me</h1>
+        <p> I am just finishing up my sophomore year at Penn State with a major in enterprise technology integration major with a focus in global buisness!</p>
         </portfolio-page>
-        <portfolio-page title="Page 3">
-         
+        <portfolio-page id="screen-3" title="Projects">
+        <h1>Projects</h1>
+        <ul>
+          <li>Project 1: </li>
+          <li>Project 2: </li>
+        </ul>
         </portfolio-page>
-        <portfolio-page title="About Me">
+        <portfolio-page id="screen-4" title="contact">
+          <h1>Contact Me</h1>
+          <form>
+            <label for="Mary Regan">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+            <button type="submit">Submit</button>
+          </form>
+          <h3>Social Media</h3>
+          <ul>
+            <li>
+              <a href="https://www.linkedin.com/in/mary-regan-47103431a/" target="_blank">LinkedIn</a>
+            </li>
+          </ul>
+          <h3>Email and Phone</h3>
+          <p>
+            Email: mrr5943@psu.edu
+            Phone: 215-962-6653
+          </p>
         </portfolio-page>
-        <portfolio-page title="About Me">
+        <portfolio-page id="screen-5" title="Resume">
+          <h2>My Resume</h2>
+          <a href="">Download Resume</a>
+          <h3>Project Experience</h3>
+          <p>Penn State Case Study for Security Risk Analysis	State College, PA
+            Member	February 2024 – April 2024
+            Worked with a collaborative group of five peer students where we leveraged our data analytic skills to conduct a security risk case study of a Critical Infrastructure failure in the National Security Sector.
+            Showcased a comprehensive case study with team members to a panel of professors and learning assistants and effectively articulated our findings, resulting in an A+.
+            Penn State Network System Development Project	State College, PA
+            Quality Control and Web Developer	November 2024-December 2024
+            Collaborated with a group to design a comprehensive network system, leveraging network design and security skills to develop a reliable and secure network for a small restaurant chain.
+            Coordinated with Verizon as the hypothetical ISP partner to utilize their Public Internet Service Provider (ISP) services and Virtual Private Network (VPN) solutions.
+            Penn State App Development Project	State College, PA
+            Member	February 2024-April 2024
+            Collaborated with a team of 3 peers to design an app using Figma, focusing on user experience and functionality.
+            Implemented features such as even creation, reminders, and synchronization with other calendars services to enhance usability.
+            Conducted thorough testing and debugging to ensure the app’s reliability and performance
+            </p>
+            <h3>work experience</h3>
+            <p>MaGerks Pub and Grill	Fort Washington, PA
+              Server and Hostess	May 2022 – Present
+              Provided exceptional customer service in a fast-paced environment, ensuring a positive dining experience for guests
+              Managed up to seven tables simultaneously, demonstrating strong multi-tasking abilities and attention to detail
+              Collaborated with kitchen staff to ensure timely and accurate order delivery, maintaining communication to address customer needs.
+              Promoted from hostess to server after six months of employment. 
+              Trained new host staff, sharing best practices for customer service and restaurant operations.
+              </p>
         </portfolio-page>
+
     </portfolio-sidebar-theme>
   
 
