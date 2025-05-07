@@ -45,9 +45,8 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
       :host {
         display: block;
         height: 100vh;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
       }
       .sidebar {
         display:block;
@@ -62,25 +61,23 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
       }
       .wrapper {
         margin-left: 310px;
+        scroll-behavior:smooth;
       }
       ul{
         list-style-type: none;
         padding: 0;
+      }
+      .container{
+        display:flex;
       }
     `];
   }
 
   render() {
     return html`
-    <scroll-button></scroll-button>
-      
-    <div class=sidebar>
-      <ul>
-      ${this.pages.map((page, index) => html`<li><a href="#${page.number}" @click="${this.linkChange}" data-index="${index}">${page.title}</a></li>`)}
-      </ul>
+    <div class="sidebar">
     </div>
     <div class="wrapper">
-      <h1>${this.title}</h1>
       <slot></slot>
       </div>
     `;
