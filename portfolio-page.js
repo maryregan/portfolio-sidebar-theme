@@ -39,6 +39,7 @@ export class PortfolioPage extends DDDSuper(LitElement) {
                 scroll-snap-type: start;
                 margin: 0;
                 padding: 0;
+                background-color: var(--portfolio-page-background, white);
             }
             h1 {
                 font-family: var(--ddd-font-navigation);
@@ -46,8 +47,8 @@ export class PortfolioPage extends DDDSuper(LitElement) {
                 padding: 20px;
             }
             .wrapper {
-                height: 100%;
-                width: 100%;
+                height: 100vw;
+                width: 100vh;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;

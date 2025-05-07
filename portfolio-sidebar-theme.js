@@ -78,6 +78,20 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
       .container{
         display:flex;
       }
+      
+        .back-to-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: #007BFF;
+          color: white;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+
+
     `];
   }
 
@@ -89,6 +103,7 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
       this._navigateToPage(index)}">${page.title}</li>`)}
       </ul>
     </div>
+    <button class="back-to-top" @click="${() => this.scrollTo(0, 0)}">Back to Top</button>
     <div class="wrapper">
       <slot></slot>
       </div>
@@ -97,6 +112,16 @@ export class PortfolioSidebarTheme extends DDDSuper(LitElement) {
    _navigateToPage(index) {
      const page = this.shadowRoot.querySelector(`portfolio-page:nth-child(${index + 1})`);
      if (page) {page.scrollIntoView({ behavior: 'smooth' });}
+    }
+    _scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    firstUpdated() {
+      const pages = window.location.hash;
+      if(hash){
+        const index = parseInt(has.replace('#screen-','')) -1;
+        this._navigateToPage(index);
+      }
     }
     
 }
